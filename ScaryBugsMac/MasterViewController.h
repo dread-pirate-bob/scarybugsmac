@@ -7,8 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "Rating View/EDStarRating.h"
 
-@interface MasterViewController : NSViewController <NSTableViewDataSource, NSTableViewDelegate>
+@interface MasterViewController : NSViewController <NSTableViewDataSource, NSTableViewDelegate, EDStarRatingProtocol>
 
 @property (strong) NSMutableArray *bugsArray;
 

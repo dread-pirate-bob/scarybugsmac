@@ -103,4 +103,30 @@
     self.bugRatingView.rating = 0.0;
 }
 
+- (IBAction)addButtonClicked:(id)sender
+{
+    ScaryBugDoc *newDoc = [[ScaryBugDoc alloc] initWithTitle:@"New Bug" andRating:0.0 andThumb:nil andFullImage:nil];
+    
+    [self.bugsArray addObject:newDoc];
+    NSInteger newRowIndex = self.bugsArray.count - 1;
+    
+    [self.bugsTableView insertRowsAtIndexes:[NSIndexSet indexSetWithIndex:newRowIndex] withAnimation:NSTableViewAnimationEffectGap];
+    
+    [self.bugsTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:newRowIndex] byExtendingSelection:NO];
+    
+    [self.bugsTableView scrollRowToVisible:newRowIndex];
+}
+
+- (IBAction)removeButtonClicked:(id)sender
+{
+    ScaryBugDoc *selectedDoc = [self selectedBugDoc];
+    
+    if (selectedDoc) {
+        [self.bugsArray removeObject:selectedDoc];
+        
+        [self.bugsTableView removeRowsAtIndexes:[NSIndexSet indexSetWithIndex:self.bugsTableView.selectedRow] withAnimation:NSTableViewAnimationSlideRight];
+        
+        [self updateDetailsForBugDoc:nil];
+    }
+}
 @end
