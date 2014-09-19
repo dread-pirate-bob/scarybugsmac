@@ -9,8 +9,13 @@
 #import "MasterViewController.h"
 #import "ScaryBugDoc.h"
 #import "ScaryBugData.h"
+#import "EDStarRating.h"
 
 @interface MasterViewController ()
+@property (weak) IBOutlet NSTableView *bugsTableView;
+@property (weak) IBOutlet NSTextField *bugNameTextField;
+@property (weak) IBOutlet EDStarRating *bugRatingView;
+@property (weak) IBOutlet NSImageView *bugImageView;
 
 @end
 
@@ -46,6 +51,56 @@
     }
     
     return cellView;
+}
+
+#pragma mark - NSTableView Delegate
+-(void)tableViewSelectionDidChange:(NSNotification *)notification {
+    ScaryBugDoc *selectedDoc = [self selectedBugDoc];
+    [self updateDetailsForBugDoc:selectedDoc];
+}
+
+#pragma mark - Utilities
+-(ScaryBugDoc *)selectedBugDoc
+{
+    NSInteger selectedRow = [self.bugsTableView selectedRow];
+    // if the selection is within the array bounds, return that bug
+    if (selectedRow >= 0 && self.bugsArray.count > selectedRow) {
+        ScaryBugDoc *selectedBug = [self.bugsArray objectAtIndex:selectedRow];
+        return selectedBug;
+    }
+    // index out of bounds, return nil
+    return nil;
+}
+
+-(void)updateDetailsForBugDoc:(ScaryBugDoc *)bugDoc
+{
+    NSString *title = @"";
+    NSImage *image = nil;
+    float rating = 0.0;
+    if (bugDoc) {
+        title = bugDoc.data.title;
+        image = bugDoc.fullImage;
+        rating = bugDoc.data.rating;
+    }
+    [self.bugNameTextField setStringValue:title];
+    [self.bugImageView setImage:image];
+    [self.bugRatingView setRating:rating];
+}
+
+-(void)loadView
+{
+    [super loadView];
+    
+    self.bugRatingView.starImage = [NSImage imageNamed:@"star.png"];
+    self.bugRatingView.starHighlightedImage= [NSImage imageNamed:@"shockedface2_full"];
+    self.bugRatingView.starImage = [NSImage imageNamed:@"shockedface2_empty"];
+    self.bugRatingView.maxRating = 5.0;
+    self.bugRatingView.delegate = self;
+    self.bugRatingView.horizontalMargin = 0;
+    self.bugRatingView.editable = YES;
+    self.bugRatingView.displayMode = EDStarRatingDisplayFull;
+    
+    self.bugRatingView.rating = 0.0;
 }
 
 @end
