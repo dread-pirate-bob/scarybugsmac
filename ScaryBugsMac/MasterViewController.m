@@ -7,6 +7,10 @@
 //
 
 #import "MasterViewController.h"
+
+#import <Quartz/Quartz.h>
+#import "NSImage+Extras.h"
+
 #import "ScaryBugDoc.h"
 #import "ScaryBugData.h"
 #import "EDStarRating.h"
@@ -138,6 +142,32 @@
         [self.bugsTableView removeRowsAtIndexes:[NSIndexSet indexSetWithIndex:self.bugsTableView.selectedRow] withAnimation:NSTableViewAnimationSlideRight];
         
         [self updateDetailsForBugDoc:nil];
+    }
+}
+
+- (IBAction)changeImageClicked:(id)sender
+{
+    ScaryBugDoc *selectedDoc = [self selectedBugDoc];
+    if (selectedDoc) {
+        [[IKPictureTaker pictureTaker] beginPictureTakerSheetForWindow:self.view.window withDelegate:self didEndSelector:@selector(pictureTakerDidEnd:returnCode:contextInfo:) contextInfo:nil];
+    }
+}
+
+-(void)pictureTakerDidEnd:(IKPictureTaker *)picker returnCode:(NSInteger)code contextInfo:(void*)context
+{
+    NSImage *image = [picker outputImage];
+    if ( image != nil && (code == NSOKButton) ) {
+        [self.bugImageView setImage:image];
+        ScaryBugDoc *selectedDoc = [self selectedBugDoc];
+        if (selectedDoc) {
+            selectedDoc.fullImage = image;
+            selectedDoc.thumbImage = [image imageByScalingAndCroppingForSize:CGSizeMake(44.0, 44.0)];
+            
+            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:[self.bugsArray indexOfObject:selectedDoc]];
+            NSIndexSet *columnSet = [NSIndexSet indexSetWithIndex:0];
+            
+            [self.bugsTableView reloadDataForRowIndexes:indexSet columnIndexes:columnSet];
+        }
     }
 }
 

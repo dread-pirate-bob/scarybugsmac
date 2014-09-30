@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B4CCE76C19DB281800B1618A /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4CCE76B19DB281800B1618A /* Quartz.framework */; };
 		BE0C815019CCC42300228328 /* EDStarRating.m in Sources */ = {isa = PBXBuildFile; fileRef = BE0C814A19CCC42300228328 /* EDStarRating.m */; };
 		BE0C815119CCC42300228328 /* NSImage+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = BE0C814C19CCC42300228328 /* NSImage+Extras.m */; };
 		BE0C815219CCC42300228328 /* shockedface2_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = BE0C814D19CCC42300228328 /* shockedface2_empty.png */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B4CCE76B19DB281800B1618A /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		BE0C814919CCC42300228328 /* EDStarRating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDStarRating.h; sourceTree = "<group>"; };
 		BE0C814A19CCC42300228328 /* EDStarRating.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDStarRating.m; sourceTree = "<group>"; };
 		BE0C814B19CCC42300228328 /* NSImage+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+Extras.h"; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4CCE76C19DB281800B1618A /* Quartz.framework in Frameworks */,
 				BE14E49E19CB732A00FEC27C /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -150,6 +153,7 @@
 		BE14E49C19CB732A00FEC27C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B4CCE76B19DB281800B1618A /* Quartz.framework */,
 				BE14E49D19CB732A00FEC27C /* Cocoa.framework */,
 				BE14E4BC19CB732A00FEC27C /* XCTest.framework */,
 				BE14E49F19CB732A00FEC27C /* Other Frameworks */,
