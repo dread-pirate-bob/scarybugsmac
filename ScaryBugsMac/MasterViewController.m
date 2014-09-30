@@ -103,6 +103,17 @@
     self.bugRatingView.rating = 0.0;
 }
 
+- (IBAction)bugNameTextViewDidEndEdit:(id)sender
+{
+    ScaryBugDoc *selectedBugDoc = [self selectedBugDoc];
+    if (selectedBugDoc) {
+        selectedBugDoc.data.title = self.bugNameTextField.stringValue;
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:[self.bugsArray indexOfObject:selectedBugDoc]];
+        NSIndexSet *columnSet = [NSIndexSet indexSetWithIndex:0];
+        [self.bugsTableView reloadDataForRowIndexes:indexSet columnIndexes:columnSet];
+    }
+}
+
 - (IBAction)addButtonClicked:(id)sender
 {
     ScaryBugDoc *newDoc = [[ScaryBugDoc alloc] initWithTitle:@"New Bug" andRating:0.0 andThumb:nil andFullImage:nil];
@@ -127,6 +138,14 @@
         [self.bugsTableView removeRowsAtIndexes:[NSIndexSet indexSetWithIndex:self.bugsTableView.selectedRow] withAnimation:NSTableViewAnimationSlideRight];
         
         [self updateDetailsForBugDoc:nil];
+    }
+}
+
+-(void)starsSelectionChanged:(EDStarRating *)control rating:(float)rating
+{
+    ScaryBugDoc *selectedDoc = [self selectedBugDoc];
+    if (selectedDoc) {
+        selectedDoc.data.rating = rating;
     }
 }
 @end

@@ -104,6 +104,9 @@
                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
+                    <connections>
+                        <action selector="bugNameTextViewDidEndEdit:" target="-2" id="BAm-kz-eMh"/>
+                    </connections>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Kkn-Ab-6fL">
                     <rect key="frame" x="238" y="399" width="123" height="17"/>
@@ -134,7 +137,7 @@
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zCe-6W-6Xc">
                     <rect key="frame" x="237" y="27" width="248" height="275"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" id="veE-aG-9Kg"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageFrameStyle="grayBezel" id="veE-aG-9Kg"/>
                 </imageView>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="0JR-Vf-kMk" customClass="EDStarRating">
                     <rect key="frame" x="240" y="311" width="242" height="40"/>
